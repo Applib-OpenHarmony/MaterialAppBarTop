@@ -56,20 +56,22 @@ export struct OptionMenu {
 
   @Builder
   private OverflowMenuItem(option: OptionMenu.Model, showDivider: boolean) {
-    Flex() {
-      Column() {
-        Text(option.getLabel())
-          .width('100%')
-          .fontSize('18fp')
-          .padding({ left: 4, right: 4 })
+    if (option.buildUI()) {
+      Flex() {
+        Column() {
+          Text(option.getLabel())
+            .width('100%')
+            .fontSize('18fp')
+            .padding({ left: '4vp', right: '4vp' })
 
-        if (showDivider) {
-          Divider().height(1).margin({ top: 8 })
+          if (showDivider) {
+            Divider().height(1).margin({ top: '8vp' })
+          }
         }
       }
+      .margin('4vp')
+      .onClick(() => this.onOptionClick(option))
     }
-    .margin(4)
-    .onClick(() => this.onOptionClick(option))
   }
 
   private onOptionClick(option: OptionMenu.Model) {
@@ -120,8 +122,7 @@ export namespace OptionMenu {
     }
 
     buildUI(): boolean {
-      return (this.id != undefined && this.id != null) &&
-      (this.label != undefined && this.label != null)
+      return this.label != undefined && this.label != null && this.label != ''
     }
 
     getId(): string | number {
