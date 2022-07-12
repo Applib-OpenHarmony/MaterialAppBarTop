@@ -48,7 +48,6 @@ struct Index {
       .setIcon($r('app.media.back'))
       .setWidth('24vp').setHeight('24vp')
 
-    ImageSize
     let title = new Title.Model('Title')
       .setFontSize('20fp')
       .setFontColor(Color.White)
